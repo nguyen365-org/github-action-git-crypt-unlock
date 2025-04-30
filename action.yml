@@ -1,0 +1,15 @@
+name: git-crypt unlock for Windows (Private Key)
+description: Allows for utilizing git-crypt unlock with a private key for Windows based actions.
+branding:
+  icon: 'unlock'
+  color: 'green'
+inputs:
+  GIT_CRYPT_PRIVATE_KEY_BASE64: # Changed input name
+    description: Base64 encoded private git-crypt key. Store this as a secret!
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  # Pass the private key as an argument to the entrypoint script
+  args:
+    - ${{ inputs.GIT_CRYPT_PRIVATE_KEY_BASE64 }}
